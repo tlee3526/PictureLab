@@ -147,14 +147,16 @@ public class Picture extends SimplePicture
       {
           for (Pixel pixelObj : rowArray)
           {
-              if (pixelObj.getBlue() < 170 || pixelObj.getBlue() > 190)
+              if (pixelObj.getBlue() > pixelObj.getGreen() && pixelObj.getBlue() > pixelObj.getRed())
                   {
-                     pixelObj.setBlue(255);
-                     pixelObj.setRed(255);
-                     pixelObj.setGreen(255);
 
                   } else
-              System.out.println(pixelObj.getRed()+"'"+pixelObj.getBlue()+"'"+pixelObj.getGreen());
+              {
+                  pixelObj.setBlue(255);
+                  pixelObj.setRed(255);
+                  pixelObj.setGreen(255);
+              }
+
 
           }
       }
