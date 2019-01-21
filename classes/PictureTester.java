@@ -115,6 +115,13 @@ public class PictureTester
     canvas.createCollage();
     canvas.explore();
   }
+
+  public static void testMyCollage()
+  {
+      Picture canvas = new Picture("kanye.png").scale(0.75,0.75);
+      canvas.myCollage();
+      canvas.explore();
+  }
   
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
@@ -131,6 +138,7 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
+      testMyCollage();
       //testMirrorArms();
       //testMirrorGull();
       //testMirrorVertical();

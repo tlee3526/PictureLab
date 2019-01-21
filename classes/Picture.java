@@ -320,22 +320,43 @@ public class Picture extends SimplePicture
     Pixel toPixel = null;
     Pixel[][] toPixels = this.getPixels2D();
     Pixel[][] fromPixels = fromPic.getPixels2D();
-    for (int fromRow = 0, toRow = startRow; 
+    for (int fromRow = 0, toRow = startRow;
          fromRow < fromPixels.length &&
-         toRow < toPixels.length; 
+         toRow < toPixels.length;
          fromRow++, toRow++)
     {
-      for (int fromCol = 0, toCol = startCol; 
+      for (int fromCol = 0, toCol = startCol;
            fromCol < fromPixels[0].length &&
-           toCol < toPixels[0].length;  
+           toCol < toPixels[0].length;
            fromCol++, toCol++)
       {
         fromPixel = fromPixels[fromRow][fromCol];
         toPixel = toPixels[toRow][toCol];
         toPixel.setColor(fromPixel.getColor());
       }
-    }   
+    }
   }
+
+    public void secondCopy(Picture pic, int startRow, int startCol, int fromRowStart, int fromRowEnd, int fromColStart, int fromColEnd)
+    {
+
+        Pixel[][] canvass = this.getPixels2D();
+        Pixel[][] fromPixels = pic.getPixels2D();
+
+        Pixel pixelOne = null;
+        Pixel pixelTwo = null;
+
+        for (int i = fromRowStart, j = startRow; i < fromRowEnd && j < canvass.length; i++, j++)
+        {
+            for (int m = fromColStart, n = startCol; m < fromColEnd && n < canvass[0].length; m++, n++)
+            {
+                pixelOne = fromPixels[i][m];
+                pixelTwo = canvass[j][n];
+                pixelTwo.setColor(pixelOne.getColor());
+            }
+        }
+    }
+
 
   /** Method to create a collage of several pictures */
   public void createCollage()
@@ -353,6 +374,23 @@ public class Picture extends SimplePicture
     this.mirrorVertical();
     this.write("collage.jpg");
   }
+
+  public void myCollage()
+  {
+      Picture x = new Picture("xxxtentacion.jpg");
+      Picture sixNine = new Picture("6ix9ine.jpg");
+
+      this.secondCopy(x,0,1, 1,150,1,150);
+      this.mirrorVertical();
+      this.zeroBlue();
+      this.secondCopy(sixNine,200,150,150,350,150,350);
+      this.negate();
+      this.secondCopy(x,500,300,300,500,400,450);
+      this.negate();
+      this.mirrorHorizontalBotToTop();
+      this.write("myCollage.jpg");
+  }
+
   
   
   /** Method to show large changes in color 
